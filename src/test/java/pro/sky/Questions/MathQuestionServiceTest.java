@@ -12,16 +12,16 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-class JavaQuestionServiceTest {
+class MathQuestionServiceTest {
     @InjectMocks
-    JavaQuestionService javaQuestionService;
+    MathQuestionService mathQuestionService;
 
     @Mock
     QuestionRepository questionRepository;
 
     @Test
     void add() {
-        assertEquals(new Question("1", "1"), javaQuestionService.add("1", "1"));
+        assertEquals(new Question("1", "1"), mathQuestionService.add("1", "1"));
         Mockito.verify(questionRepository, Mockito.only()).add(new Question("1", "1"));
     }
 
@@ -29,7 +29,7 @@ class JavaQuestionServiceTest {
     void remove() {
         Mockito.when(questionRepository.find("1")).thenReturn(new Question("1", "1"));
 
-        assertEquals(new Question("1", "1"), javaQuestionService.remove("1"));
+        assertEquals(new Question("1", "1"), mathQuestionService.remove("1"));
         Mockito.verify(questionRepository, Mockito.times(1)).remove("1");
     }
 
@@ -37,7 +37,7 @@ class JavaQuestionServiceTest {
     void find() {
         Mockito.when(questionRepository.find("1")).thenReturn(new Question("1", "1"));
 
-        assertEquals(new Question("1", "1"), javaQuestionService.find("1"));
+        assertEquals(new Question("1", "1"), mathQuestionService.find("1"));
     }
 
     @Test
@@ -50,6 +50,6 @@ class JavaQuestionServiceTest {
 
         Mockito.when(questionRepository.get(3)).thenReturn(expected);
 
-        assertEquals(expected, javaQuestionService.get(3));
+        assertEquals(expected, mathQuestionService.get(3));
     }
 }
