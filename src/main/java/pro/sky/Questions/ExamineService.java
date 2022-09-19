@@ -20,10 +20,11 @@ public class ExamineService {
         List<Question> questions = new ArrayList<>();
         Random random = new Random();
 
-        for(QuestionService questionService: this.questionServices){
-            questions.addAll(questionService.get(random.nextInt() % amount - questions.size()));
+        for(int i = 0; i < questionServices.size() - 1; i++){
+            questions.addAll(questionServices.get(i).get(random.nextInt(amount - questions.size())));
         }
-        questions.addAll(questionServices.get(0).get(amount - questions.size()));
+        questions.addAll(questionServices.get(questionServices.size() - 1).get(amount - questions.size()));
+
         Collections.shuffle(questions);
 
         return questions;
